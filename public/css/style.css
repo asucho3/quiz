@@ -126,8 +126,8 @@ body {
 .game {
   display: flex;
   flex-direction: column;
-  height: 50vh;
   gap: 3rem;
+  height: 50vh;
   padding: 2rem;
   background-color: #eee;
   font-size: 2rem;
@@ -246,7 +246,7 @@ body {
 }
 
 .logo {
-  width: 10%;
+  width: 20rem;
   padding-top: 10rem;
   animation-name: logo;
   animation-iteration-count: infinite;
@@ -316,4 +316,34 @@ body {
 .error {
   font-size: 2rem;
   text-align: center;
+}
+
+@media (max-width: 30em) {
+  body {
+    height: 50vh;
+  }
+  .header {
+    height: 5vh;
+  }
+  .header__alert.error,
+  .header__alert.created {
+    font-size: 1.5rem;
+    outline-style: none;
+  }
+  .login__content {
+    margin-top: 0;
+  }
+  .container {
+    width: 100vw;
+    height: 66vh;
+  }
+  .footer {
+    height: 0;
+  }
+  .game {
+    height: 65vh;
+  }
+  .game__answer {
+    width: 75vw;
+  }
 }

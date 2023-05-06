@@ -89,7 +89,7 @@ const game = document.querySelector('.game');
 if (game) {
   // Initialize variables
   let played = false;
-  let timerValue = 5;
+  let timerValue = 10;
   const TIMEOUT_FETCH = 1000;
   const INTERVAL = 1000;
   let objTimer;
