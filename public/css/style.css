@@ -53,7 +53,7 @@ body {
   border: 0.1rem solid #999;
   border-radius: 0.8rem;
   padding: 2rem;
-  background-color: #eee;
+  background-color: #fff;
   transition-duration: 0.3s;
 }
 
@@ -98,6 +98,10 @@ body {
 }
 .login__content__signup:hover {
   background-color: #1bcada;
+}
+
+.processing {
+  background-color: #aaa;
 }
 
 /* .footer {

@@ -17,47 +17,69 @@ if (login) {
     }, timeout);
   };
 
-  const loginBtn = document.querySelector('.login__content__button');
-  const signUp = document.querySelector('.login__content__signup');
+  const content = document.querySelector('.login__content');
 
-  //handle login button behaviour
-  loginBtn.addEventListener('click', async function () {
-    const username = document.querySelector('.login__content__username').value;
-    const password = document.querySelector('.login__content__password').value;
-    const res = await fetch('/api/v1/auth/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ username, password }),
-    });
-    const data = await res.json();
-    console.log(data);
-    if (data.status === 'success') {
-      location.assign('/game');
-    }
-    if (data.status !== 'success') {
-      showAlert('error', data.message);
-    }
-  });
+  content.addEventListener('click', async function (e) {
+    try {
+      // Guard clause to ensure that this is a login or signup button
+      if (
+        !e.target.classList.contains('login__content__button') &&
+        !e.target.classList.contains('login__content__signup')
+      ) {
+        return;
+      }
 
-  //handle signup button behaviour
-  signUp.addEventListener('click', async function () {
-    const username = document.querySelector('.login__content__username').value;
-    const password = document.querySelector('.login__content__password').value;
-    const res = await fetch('/api/v1/auth/signup', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ username, password }),
-    });
-    const data = await res.json();
-    if (data.status === 'success') {
-      showAlert('created', 'User created successfully');
-    }
-    if (data.status !== 'success') {
-      showAlert('error', data.message);
+      const usernameEl = document.querySelector('.login__content__username');
+      const passwordEl = document.querySelector('.login__content__password');
+
+      // Guard clause to prevent hammering of the server
+      if (
+        usernameEl.classList.contains('processing') ||
+        passwordEl.classList.contains('processing')
+      ) {
+        return;
+      }
+      const username = usernameEl.value;
+      const password = passwordEl.value;
+
+      // grey out (deactivate) the input
+      [usernameEl, passwordEl].forEach((el) => {
+        console.log(el);
+        el.classList.toggle('processing');
+      });
+
+      const option = e.target.classList.contains('login__content__button')
+        ? 'login'
+        : 'signup';
+
+      const res = await fetch(`/api/v1/auth/${option}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, password }),
+      });
+      const data = await res.json();
+
+      // reactivate the input
+      [usernameEl, passwordEl].forEach((el) => {
+        console.log(el);
+        el.classList.toggle('processing');
+      });
+
+      if (data.status === 'success') {
+        if (option === 'login') {
+          location.assign('/game');
+        }
+        if (option === 'signup') {
+          showAlert('created', 'User created successfully');
+        }
+      }
+      if (data.status !== 'success') {
+        throw new Error(data.message);
+      }
+    } catch (err) {
+      showAlert('error', err);
     }
   });
 }
