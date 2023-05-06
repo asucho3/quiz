@@ -115,3 +115,17 @@ exports.saveScore = catchAsync(async (req, res, next) => {
     },
   });
 });
+
+exports.protect = (req, res, next) => {
+  if (Array.isArray(req.body)) {
+    if (req.body[0].password !== process.env.ADMIN_PASSWORD) {
+      return next(new AppError('Wrong password for this action', 403));
+    }
+  }
+  if (!Array.isArray(req.body)) {
+    if (req.body.password !== process.env.ADMIN_PASSWORD) {
+      return next(new AppError('Wrong password for this action', 403));
+    }
+  }
+  next();
+};
