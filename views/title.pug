@@ -1,0 +1,12 @@
+extends base
+
+block content
+    .container
+        img.logo(src="img/logo.png")
+        form.login
+            .login__header Welcome 
+            .login__content
+                input.login__content__username(type='text' placeholder='your username')
+                input.login__content__password(type='password' placeholder='your password')
+                a.login__content__button(href='#') Login
+                a.login__content__signup(href='#') Sign up

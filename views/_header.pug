@@ -1,0 +1,10 @@
+if !user
+    .header
+else 
+    .game__header 
+        if user 
+            .game__user= `Logged in as ${user}` 
+            .game__score= `Hi-score: ${score}`
+            .game__score.game__score--current= `Current score: 0`
+        
+        
