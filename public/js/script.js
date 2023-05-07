@@ -44,8 +44,8 @@ if (login) {
 
       // grey out (deactivate) the input
       [usernameEl, passwordEl].forEach((el) => {
-        console.log(el);
         el.classList.toggle('processing');
+        el.setAttribute('disabled', '');
       });
 
       const option = e.target.classList.contains('login__content__button')
@@ -65,6 +65,7 @@ if (login) {
       [usernameEl, passwordEl].forEach((el) => {
         console.log(el);
         el.classList.toggle('processing');
+        el.removeAttribute('disabled', '');
       });
 
       if (data.status === 'success') {
