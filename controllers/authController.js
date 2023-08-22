@@ -44,7 +44,7 @@ exports.login = catchAsync(async (req, res, next) => {
   if (!user) return next(new AppError('Wrong user or password', 400));
 
   const ok = await user.correctPassword(password, user.password);
-  console.log(password);
+
   if (!ok) return next(new AppError('Wrong user or password', 400));
 
   // if this part has been reached, a user has been successfully logged in
