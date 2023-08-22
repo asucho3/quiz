@@ -17,6 +17,12 @@ A quiz game to test your general knowledge!
 
 # How to Install and Run the Project
 
+- install dependencies
+
+```
+npm i
+```
+
 the repo contains all the files that you need to run the project locally, but since the project is public, for security reasons it does NOT contain my credentials
 
 such credentials should be inserted in a config.env file with the following structure:
