@@ -49,7 +49,9 @@ If you decide to proceed this way, then all you need to do after grabbing the pr
 
 after everything is set up, create a config.env file similar to what's shown above and fill out the necessary credentials with your own
 
-## to create your own questions
+## Creating your own questions
+
+If you've decided to create your own MongoDB instance, you'll need to create some questions in order to actually play the game
 
 ```
 Send POST request to http://127.0.0.1:3000/api/v1/question/many
